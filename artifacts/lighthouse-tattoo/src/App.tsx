@@ -191,15 +191,15 @@ const artists = [
 type Artist = typeof artists[0]
 
 const galleryImages = [
-  { src: '/gallery-1.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
-  { src: '/gallery-2.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
-  { src: '/gallery-3.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
-  { src: '/gallery-4.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
-  { src: '/gallery-5.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
-  { src: '/gallery-6.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
-  { src: '/gallery-7.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
-  { src: '/gallery-8.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
-  { src: '/gallery-9.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-1.webp', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-2.webp', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-3.webp', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-4.webp', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-5.webp', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-6.webp', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-7.webp', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-8.webp', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-9.webp', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
 ]
 
 function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
