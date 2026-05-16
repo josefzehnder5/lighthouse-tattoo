@@ -299,6 +299,36 @@
     text-shadow: 0 0 80px rgba(230, 0, 0, 0.4);
   }
 
+  /* Calendar specific */
+  .calendar-day {
+    position: relative;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+  }
+
+  .calendar-day:hover:not(:disabled) {
+    background: var(--red-primary);
+    color: white;
+    transform: scale(1.05);
+  }
+
+  .calendar-day.selected {
+    background: var(--red-primary);
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 0 15px rgba(230, 0, 0, 0.5);
+  }
+
+  .calendar-day.today {
+    border: 1px solid rgba(230, 0, 0, 0.5);
+  }
+
+  .calendar-day:disabled {
+    text-decoration: line-through;
+    color: #333;
+    cursor: not-allowed;
+  }
+
   /* Text colors */
   .text-red-primary { color: var(--red-primary); }
   .text-white { color: var(--white); }

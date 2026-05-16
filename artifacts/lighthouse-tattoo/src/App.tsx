@@ -266,37 +266,67 @@ function BookingModal({
           <span className="text-white font-semibold text-lg">{monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}</span>
           <button onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1))} className="text-white hover:text-red-primary transition-colors text-2xl px-3 py-1">&rarr;</button>
         </div>
-        <div className="grid grid-cols-7 gap-1 mb-2">
+        {/* Weekday headers */}
+        <div className="grid grid-cols-7 gap-1 mb-3">
           {dayNames.map((day) => (
-            <div key={day} className="text-center text-gray-500 text-xs py-2">{day}</div>
+            <div key={day} className="text-center text-gray-500 text-xs py-2 font-semibold uppercase tracking-wider border-b border-[#1a1a1a] pb-2">{day}</div>
           ))}
         </div>
+        {/* Calendar days */}
         <div className="grid grid-cols-7 gap-1 mb-6">
-          {days.map((day, idx) => (
-            <div key={idx} className="aspect-square">
-              {day !== null && (
+          {days.map((day, idx) => {
+            if (day === null) return <div key={idx} className="aspect-square" />
+            const isToday =
+              day === today.getDate() &&
+              currentMonth.getMonth() === today.getMonth() &&
+              currentMonth.getFullYear() === today.getFullYear()
+            const isSelected =
+              selectedDate &&
+              selectedDate.getDate() === day &&
+              selectedDate.getMonth() === currentMonth.getMonth() &&
+              selectedDate.getFullYear() === currentMonth.getFullYear()
+            const disabled = isDateDisabled(day)
+            return (
+              <div key={idx} className="aspect-square p-0.5">
                 <button
                   onClick={() => handleDateClick(day)}
-                  disabled={isDateDisabled(day)}
-                  className={`w-full h-full flex items-center justify-center text-sm transition-all rounded
-                    ${isDateDisabled(day) ? 'text-gray-600 cursor-not-allowed' : 'text-white hover:bg-red-primary cursor-pointer'}
-                    ${selectedDate && selectedDate.getDate() === day && selectedDate.getMonth() === currentMonth.getMonth() ? 'bg-red-primary text-white' : ''}
+                  disabled={disabled}
+                  className={`w-full h-full flex items-center justify-center text-sm rounded-sm transition-all duration-200 relative
+                    ${disabled
+                      ? 'text-gray-600 cursor-not-allowed line-through decoration-gray-600'
+                      : isSelected
+                        ? 'bg-red-primary text-white font-bold shadow-[0_0_12px_rgba(230,0,0,0.6)] scale-105'
+                        : isToday
+                          ? 'text-white border border-red-primary/60 font-semibold hover:bg-red-primary hover:text-white'
+                          : 'text-gray-300 hover:bg-red-primary hover:text-white'
+                    }
                   `}
                 >
                   {day}
+                  {isToday && !disabled && <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-red-primary" />}
                 </button>
-              )}
-            </div>
-          ))}
+              </div>
+            )
+          })}
         </div>
+        {/* Selected date preview */}
+        {selectedDate && (
+          <p className="text-center text-white mb-4 text-sm">
+            <span className="text-gray-500">{t('bookingSubtitle')}</span>{' '}
+            <span className="text-red-primary font-bold">{artist.name}</span>{' '}
+            <span className="text-gray-500">&mdash;</span>{' '}
+            <span className="font-semibold">{selectedDate.getDate()}. {monthNames[selectedDate.getMonth()]} {selectedDate.getFullYear()}</span>
+          </p>
+        )}
+        {/* Action buttons */}
         <div className="flex gap-4">
-          <button onClick={onClose} className="flex-1 py-3 border border-white text-white hover:bg-white hover:text-black transition-colors uppercase font-bold tracking-wider text-sm">
+          <button onClick={onClose} className="flex-1 py-3 border border-white/30 text-white/70 hover:bg-white/10 hover:text-white hover:border-white transition-colors uppercase font-bold tracking-wider text-sm">
             {t('bookingCancel')}
           </button>
           <button
             onClick={() => selectedDate && onConfirm(selectedDate)}
             disabled={!selectedDate}
-            className={`flex-1 py-3 uppercase font-bold tracking-wider text-sm transition-colors ${selectedDate ? 'bg-red-primary text-white hover:bg-red-700' : 'bg-gray-700 text-gray-500 cursor-not-allowed'}`}
+            className={`flex-1 py-3 uppercase font-bold tracking-wider text-sm transition-all ${selectedDate ? 'bg-red-primary text-white hover:bg-red-700 shadow-[0_0_20px_rgba(230,0,0,0.4)]' : 'bg-[#1a1a1a] text-gray-600 cursor-not-allowed'}`}
           >
             {t('bookingConfirm')}
           </button>
