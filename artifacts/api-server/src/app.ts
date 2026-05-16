@@ -4,7 +4,7 @@ import express, {
   type Response,
 } from "express";
 import cors from "cors";
-const pinoHttp = require("pino-http").default || require("pino-http");
+import pinoHttp from "pino-http";
 import router from "./routes";
 import { logger } from "./lib/logger";
 
