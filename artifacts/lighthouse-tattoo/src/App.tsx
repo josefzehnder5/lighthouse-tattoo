@@ -20,6 +20,7 @@ const translations: Record<string, Record<string, string>> = {
     piercingText: 'Piercing verfügbar',
     contactTitle: 'KONTAKT',
     followUs: 'FOLGE UNS',
+    galleryTitle: 'GALERIE',
     copyright: '© 2024 LIGHTHOUSE TATTOO MEDELLÍN',
     bookingTitle: 'WUNSCHTERMIN WÄHLEN',
     bookingSubtitle: 'Wähle deinen bevorzugten Tag für',
@@ -47,6 +48,7 @@ const translations: Record<string, Record<string, string>> = {
     piercingText: 'Piercing available',
     contactTitle: 'CONTACT',
     followUs: 'FOLLOW US',
+    galleryTitle: 'GALLERY',
     copyright: '© 2024 LIGHTHOUSE TATTOO MEDELLÍN',
     bookingTitle: 'SELECT YOUR DATE',
     bookingSubtitle: 'Choose your preferred day for',
@@ -74,6 +76,7 @@ const translations: Record<string, Record<string, string>> = {
     piercingText: 'Piercing disponible',
     contactTitle: 'CONTACTO',
     followUs: 'SÍGUENOS',
+    galleryTitle: 'GALERÍA',
     copyright: '© 2024 LIGHTHOUSE TATTOO MEDELLÍN',
     bookingTitle: 'ELIGE TU FECHA',
     bookingSubtitle: 'Selecciona tu día preferido para',
@@ -101,6 +104,7 @@ const translations: Record<string, Record<string, string>> = {
     piercingText: 'Piercing disponível',
     contactTitle: 'CONTATO',
     followUs: 'SIGA-NOS',
+    galleryTitle: 'GALERIA',
     copyright: '© 2024 LIGHTHOUSE TATTOO MEDELLÍN',
     bookingTitle: 'ESCOLHA SUA DATA',
     bookingSubtitle: 'Selecione seu dia preferido para',
@@ -128,6 +132,7 @@ const translations: Record<string, Record<string, string>> = {
     piercingText: 'Piercing disponible',
     contactTitle: 'CONTACT',
     followUs: 'SUIVEZ-NOUS',
+    galleryTitle: 'GALERIE',
     copyright: '© 2024 LIGHTHOUSE TATTOO MEDELLÍN',
     bookingTitle: 'CHOISISSEZ VOTRE DATE',
     bookingSubtitle: 'Sélectionnez votre jour préféré pour',
@@ -184,6 +189,16 @@ const artists = [
 ]
 
 type Artist = typeof artists[0]
+
+const galleryImages = [
+  { src: '/gallery-1.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-2.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-3.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-4.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-5.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-6.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-7.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+]
 
 function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
   useEffect(() => {
@@ -580,13 +595,37 @@ export default function App() {
           </div>
         </section>
 
+        <div className="section-divider" />
+
+        {/* GALLERY */}
+        <section id="gallery" className="py-16 md:py-24 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wider mb-4 text-red-primary">{t('galleryTitle')}</h2>
+              <div className="red-line mx-auto" />
+            </div>
+            <div className="gallery-grid">
+              {galleryImages.map((img, idx) => (
+                <div key={idx} className="gallery-item image-frame" onClick={() => openLightbox(img.src, img.alt)}>
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    loading="lazy"
+                    className="gallery-img w-full h-full object-cover cursor-pointer"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* FOOTER */}
         <footer className="py-12 px-4 border-t border-[#1a1a1a]">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-gray-600 text-sm tracking-widest mb-6">{t('copyright')}</p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8">
               <span className="watermark">MARTIAL CULTURAL</span>
-              <span className="watermark">AMERICA · COLOMBIA · RIO DE JANEIRO · BRASIL</span>
+              <span className="watermark">AMERICA \u00b7 COLOMBIA \u00b7 RIO DE JANEIRO \u00b7 BRASIL</span>
             </div>
           </div>
         </footer>
