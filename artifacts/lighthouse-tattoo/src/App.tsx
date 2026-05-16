@@ -198,6 +198,8 @@ const galleryImages = [
   { src: '/gallery-5.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
   { src: '/gallery-6.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
   { src: '/gallery-7.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-8.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
+  { src: '/gallery-9.jpg', alt: 'Tattoo by Lighthouse Tattoo Medell\u00edn' },
 ]
 
 function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
